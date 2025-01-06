@@ -1,4 +1,3 @@
-import { TTask } from "../../App";
 import { generateId } from "../../utils/helper";
 import { useState } from "react";
 
@@ -16,7 +15,7 @@ export const CreateModal = ({
       ...prev,
       {
         id,
-        status: 1,
+        status: "toDo",
         taskName,
       },
     ]);

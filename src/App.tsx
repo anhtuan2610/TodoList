@@ -1,37 +1,11 @@
 import { useState } from "react";
 import { CreateModal } from "./components/todo-app/create-modal";
 import { TaskTable } from "./components/todo-app/task-table";
+import { DEFAULT_TASK, TASK_STATUS } from "./utils/constants";
 
 function App() {
   const [isShowCreate, setIsShowCreate] = useState(false);
-  const defaultTask: TTask[] = [
-    {
-      id: 1,
-      taskName: "task1",
-      status: 1,
-    },
-    {
-      id: 2,
-      taskName: "task2",
-      status: 1,
-    },
-    {
-      id: 3,
-      taskName: "task3",
-      status: 2,
-    },
-    {
-      id: 4,
-      taskName: "task4",
-      status: 3,
-    },
-    {
-      id: 5,
-      taskName: "task5",
-      status: 4,
-    },
-  ];
-  const [listTask, setListTask] = useState<TTask[]>(defaultTask);
+  const [listTask, setListTask] = useState<TTask[]>(DEFAULT_TASK);
 
   return (
     <>
@@ -47,7 +21,7 @@ function App() {
           </button>
         </div>
         <div className="grid grid-cols-4 gap-10 text-center">
-          <TaskTable
+          {/* <TaskTable
             listTask={listTask}
             setListTask={setListTask}
             taskStatus={1}
@@ -66,7 +40,14 @@ function App() {
             listTask={listTask}
             setListTask={setListTask}
             taskStatus={4}
-          />
+          /> */}
+          {TASK_STATUS.map((taskStatus) => (
+            <TaskTable
+              listTask={listTask}
+              setListTask={setListTask}
+              taskStatus={taskStatus}
+            />
+          ))}
         </div>
         {isShowCreate && (
           <CreateModal

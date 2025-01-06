@@ -1,30 +1,18 @@
 export const TickIcon = () => {
   return (
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-      <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-      <g
-        id="SVGRepo_tracerCarrier"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+    <svg
+      width={25}
+      height={25}
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
       />
-      <g id="SVGRepo_iconCarrier">
-        {" "}
-        <title />{" "}
-        <g id="Complete">
-          {" "}
-          <g id="tick">
-            {" "}
-            <polyline
-              fill="none"
-              points="3.7 14.3 9.6 19 20.3 5"
-              stroke="#3ed52a"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-            />{" "}
-          </g>{" "}
-        </g>{" "}
-      </g>
     </svg>
   );
 };
@@ -32,50 +20,18 @@ export const TickIcon = () => {
 export const DeleteIcon = () => {
   return (
     <svg
-      width="201px"
-      height="201px"
-      viewBox="0 -0.5 21 21"
-      version="1.1"
+      width={25}
+      height={25}
+      viewBox="0 0 15 15"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      fill="#000000"
     >
-      <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-      <g
-        id="SVGRepo_tracerCarrier"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <path
+        d="M5.5 1C5.22386 1 5 1.22386 5 1.5C5 1.77614 5.22386 2 5.5 2H9.5C9.77614 2 10 1.77614 10 1.5C10 1.22386 9.77614 1 9.5 1H5.5ZM3 3.5C3 3.22386 3.22386 3 3.5 3H5H10H11.5C11.7761 3 12 3.22386 12 3.5C12 3.77614 11.7761 4 11.5 4H11V12C11 12.5523 10.5523 13 10 13H5C4.44772 13 4 12.5523 4 12V4L3.5 4C3.22386 4 3 3.77614 3 3.5ZM5 4H10V12H5V4Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
       />
-      <g id="SVGRepo_iconCarrier">
-        {" "}
-        <title>delete [#df2020]</title> <desc>Created with Sketch.</desc>{" "}
-        <defs> </defs>{" "}
-        <g
-          id="Page-1"
-          stroke="none"
-          strokeWidth={1}
-          fill="none"
-          fillRule="evenodd"
-        >
-          {" "}
-          <g
-            id="Dribbble-Light-Preview"
-            transform="translate(-179.000000, -360.000000)"
-            fill="#e81111"
-          >
-            {" "}
-            <g id="icons" transform="translate(56.000000, 160.000000)">
-              {" "}
-              <path
-                d="M130.35,216 L132.45,216 L132.45,208 L130.35,208 L130.35,216 Z M134.55,216 L136.65,216 L136.65,208 L134.55,208 L134.55,216 Z M128.25,218 L138.75,218 L138.75,206 L128.25,206 L128.25,218 Z M130.35,204 L136.65,204 L136.65,202 L130.35,202 L130.35,204 Z M138.75,204 L138.75,200 L128.25,200 L128.25,204 L123,204 L123,206 L126.15,206 L126.15,220 L140.85,220 L140.85,206 L144,206 L144,204 L138.75,204 Z"
-                id="delete-[#df2020]"
-              >
-                {" "}
-              </path>{" "}
-            </g>{" "}
-          </g>{" "}
-        </g>{" "}
-      </g>
     </svg>
   );
 };
@@ -83,59 +39,37 @@ export const DeleteIcon = () => {
 export const EditIcon = () => {
   return (
     <svg
-      viewBox="0 0 32 32"
-      enableBackground="new 0 0 32 32"
-      id="Editable-line"
-      version="1.1"
-      xmlSpace="preserve"
+      width={20}
+      height={20}
+      viewBox="0 0 15 15"
+      fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      fill="#000000"
     >
-      <g id="SVGRepo_bgCarrier" strokeWidth={0} />
-      <g
-        id="SVGRepo_tracerCarrier"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+      <path
+        d="M3.625 7.5C3.625 8.12132 3.12132 8.625 2.5 8.625C1.87868 8.625 1.375 8.12132 1.375 7.5C1.375 6.87868 1.87868 6.375 2.5 6.375C3.12132 6.375 3.625 6.87868 3.625 7.5ZM8.625 7.5C8.625 8.12132 8.12132 8.625 7.5 8.625C6.87868 8.625 6.375 8.12132 6.375 7.5C6.375 6.87868 6.87868 6.375 7.5 6.375C8.12132 6.375 8.625 6.87868 8.625 7.5ZM12.5 8.625C13.1213 8.625 13.625 8.12132 13.625 7.5C13.625 6.87868 13.1213 6.375 12.5 6.375C11.8787 6.375 11.375 6.87868 11.375 7.5C11.375 8.12132 11.8787 8.625 12.5 8.625Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
       />
-      <g id="SVGRepo_iconCarrier">
-        <circle
-          cx={16}
-          cy={16}
-          fill="none"
-          id="XMLID_878_"
-          r={2}
-          stroke="#ffffff"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          strokeWidth={2}
-        />
-        <circle
-          cx={6}
-          cy={16}
-          fill="none"
-          id="XMLID_879_"
-          r={2}
-          stroke="#ffffff"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          strokeWidth={2}
-        />
-        <circle
-          cx={26}
-          cy={16}
-          fill="none"
-          id="XMLID_880_"
-          r={2}
-          stroke="#ffffff"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeMiterlimit={10}
-          strokeWidth={2}
-        />
-      </g>
+    </svg>
+  );
+};
+
+export const CloseIcon = () => {
+  return (
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 15 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z"
+        fill="currentColor"
+        fillRule="evenodd"
+        clipRule="evenodd"
+      />
     </svg>
   );
 };

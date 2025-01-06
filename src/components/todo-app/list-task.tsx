@@ -6,7 +6,11 @@ const ListTask = ({
   setListTask,
 }: {
   listTask: TTask[];
-  taskStatus: number;
+  taskStatus: {
+    id: number;
+    name: string;
+    value: string;
+  };
   setListTask: React.Dispatch<React.SetStateAction<TTask[]>>;
 }) => {
   const handleDelete = (id: number | string) => {
@@ -15,7 +19,7 @@ const ListTask = ({
   };
   return listTask.map(
     (item) =>
-      item.status === taskStatus && (
+      item.status === taskStatus.value && (
         <TaskCard
           key={item.id}
           item={item}
