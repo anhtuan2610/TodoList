@@ -48,3 +48,41 @@ export const TASK_STATUS = [
     value: "complete",
   },
 ];
+
+export const SEVEN_DAY = [
+  {
+    id: 1,
+    name: "Mon",
+    value: "mon",
+  },
+  {
+    id: 2,
+    name: "Tue",
+    value: "tue",
+  },
+  {
+    id: 3,
+    name: "Wed",
+    value: "wed",
+  },
+  {
+    id: 4,
+    name: "Thu",
+    value: "thu",
+  },
+  {
+    id: 5,
+    name: "Fri",
+    value: "fri",
+  },
+  {
+    id: 6,
+    name: "Sat",
+    value: "sat",
+  },
+  {
+    id: 7,
+    name: "Sun",
+    value: "sun",
+  },
+];
