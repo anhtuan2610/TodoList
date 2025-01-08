@@ -7,12 +7,16 @@ import { ScheduleContext } from "../context/schedule-context";
 export const TimeApp = () => {
   const [listSchedule, setListSchedule] = useState<TSchedule[]>([
     {
-      id: "fhfhkduduhdhjf",
+      id: generateId(),
       workingDays: ["mon", "sat"],
     },
     {
-      id: "jlkshiodysiouydiosyhkdjh",
+      id: generateId(),
       workingDays: ["wed"],
+    },
+    {
+      id: generateId(),
+      workingDays: ["sun"],
     },
   ]);
 
