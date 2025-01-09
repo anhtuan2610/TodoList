@@ -10,6 +10,7 @@ export const WorkingSchedule = ({
 }) => {
   const scheduleDataContext = useContext(ScheduleContext);
   const [disableWorkedDays, setDisableWorkedDays] = useState<string[]>([]);
+
   const handleOnClose = () => {
     const newListSchedule = scheduleDataContext?.listSchedule.filter(
       (schedule) => schedule.id !== scheduleSelected.id
@@ -23,6 +24,7 @@ export const WorkingSchedule = ({
     dayValue: string
   ) => {
     const checked = e.target.checked;
+
     if (checked) {
       const newListSchedule = scheduleDataContext?.listSchedule.map(
         (schedule) =>
@@ -33,24 +35,23 @@ export const WorkingSchedule = ({
       if (newListSchedule) {
         scheduleDataContext?.setListSchedule(newListSchedule);
       }
-    } else {
-      const newListSchedule = scheduleDataContext?.listSchedule.map(
-        (schedule) => {
-          if (schedule.id === scheduleSelected.id) {
-            const newScheduleListDayWorked = schedule.workingDays.filter(
-              (day) => {
-                return day !== dayValue;
-              }
-            );
-            return { ...schedule, workingDays: newScheduleListDayWorked };
-          } else {
-            return schedule;
-          }
+      return;
+    }
+    const newListSchedule = scheduleDataContext?.listSchedule.map(
+      (schedule) => {
+        if (schedule.id === scheduleSelected.id) {
+          const newScheduleListDayWorked = schedule.workingDays.filter(
+            (day) => {
+              return day !== dayValue;
+            }
+          );
+          return { ...schedule, workingDays: newScheduleListDayWorked };
         }
-      );
-      if (newListSchedule) {
-        scheduleDataContext?.setListSchedule(newListSchedule);
+        return schedule;
       }
+    );
+    if (newListSchedule) {
+      scheduleDataContext?.setListSchedule(newListSchedule);
     }
   };
 
@@ -86,7 +87,7 @@ export const WorkingSchedule = ({
               checked={scheduleSelected.workingDays.includes(day.value)}
               onChange={(e) => handleOnChangeChecked(e, day.value)}
             />
-            <label htmlFor={day.value}>{day.name}</label>
+            <label>{day.name}</label>
           </div>
         ))}
       </div>

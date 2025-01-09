@@ -3,34 +3,30 @@ import { PlusIcon, SearchIcon } from "../assets/icons";
 import { Schedule } from "../components/time-app/schedule";
 import { generateId } from "../utils/helper";
 import { ScheduleContext } from "../context/schedule-context";
+import { StoreRegistered } from "../components/time-app/store-registered";
 
 export const TimeApp = () => {
-  const [listSchedule, setListSchedule] = useState<TSchedule[]>([
-    {
-      id: generateId(),
-      workingDays: ["mon", "sat"],
-    },
-    {
-      id: generateId(),
-      workingDays: ["wed"],
-    },
-    {
-      id: generateId(),
-      workingDays: ["sun"],
-    },
-  ]);
+  const [listSchedule, setListSchedule] = useState<TSchedule[]>([]);
+  const [listScheduleSave, setListScheduleSave] = useState<TSchedule[]>([]);
 
   const handleAddSchedule = () => {
-    setListSchedule((prev) => [...prev, { id: generateId(), workingDays: [] }]);
+    setListSchedule((prev) => [
+      ...prev,
+      { id: generateId(), workingDays: [], times: [] },
+    ]);
   };
 
   return (
     <ScheduleContext.Provider value={{ listSchedule, setListSchedule }}>
-      <div className="bg-[#212121] min-h-screen text-white p-6">
+      <div className="bg-[#212121] min-h-screen text-white p-6 space-y-5">
         <div className="bg-[#1B1B1F] p-4 rounded-2xl">
           <div className="flex justify-between">
             <div className=" text-2xl  font-semibold">Working hour</div>
-            <button className="bg-[#2C2D32] px-4 py-2 rounded-lg font-semibold shadow-lg">
+            <button
+              className="bg-[#2C2D32] px-4 py-2 rounded-lg font-semibold shadow-lg disabled:bg-gray-600 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed"
+              disabled={listSchedule.length == 0}
+              onClick={() => setListScheduleSave(listSchedule)}
+            >
               Save
             </button>
           </div>
@@ -57,12 +53,16 @@ export const TimeApp = () => {
           </div>
 
           <button
-            className="flex items-center gap-2 px-3 py-2 bg-[#2C2D32] rounded-xl font-semibold shadow-lg"
+            className="flex items-center gap-2 px-3 py-2 bg-[#2C2D32] rounded-xl font-semibold shadow-lg disabled:bg-gray-600 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed"
             onClick={handleAddSchedule}
+            disabled={listSchedule.length >= 7}
           >
             <PlusIcon /> Add Schedule
           </button>
         </div>
+        {listScheduleSave.length > 0 && (
+          <StoreRegistered listScheduleSave={listScheduleSave} />
+        )}
       </div>
     </ScheduleContext.Provider>
   );

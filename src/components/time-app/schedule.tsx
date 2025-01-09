@@ -10,8 +10,14 @@ export const Schedule = ({
   return (
     <div className="p-4 border border-gray-700 rounded-md space-y-6">
       <WorkingSchedule scheduleSelected={scheduleSelected} />
-      <TimeFromTo />
-      <AddTimeButton />
+      {scheduleSelected.times?.map((time) => (
+        <TimeFromTo
+          key={time.id}
+          scheduleSelected={scheduleSelected}
+          timeSelected={time}
+        />
+      ))}
+      <AddTimeButton scheduleSelected={scheduleSelected} />
     </div>
   );
 };
