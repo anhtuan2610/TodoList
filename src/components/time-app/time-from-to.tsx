@@ -10,8 +10,12 @@ export const TimeFromTo = ({
   timeSelected: TTime;
 }) => {
   const scheduleDataContext = useContext(ScheduleContext);
-  const handleOnchangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const timeField = e.target.id;
+
+  const handleOnchangeInput = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: string
+  ) => {
+    const timeField = type;
     const newListSchedule = scheduleDataContext?.listSchedule.map(
       (schedule) => {
         if (scheduleSelected.id === schedule.id) {
@@ -27,9 +31,7 @@ export const TimeFromTo = ({
       }
     );
 
-    if (newListSchedule) {
-      scheduleDataContext?.setListSchedule(newListSchedule);
-    }
+    scheduleDataContext?.setListSchedule(newListSchedule ?? []);
   };
 
   return (
@@ -37,17 +39,25 @@ export const TimeFromTo = ({
       <div className="space-y-2 w-full">
         <p>From: *</p>
         <div className="flex items-center gap-2">
-          <Input id={"fromHour"} handleOnchangeInput={handleOnchangeInput} />
+          <Input
+            handleOnchangeInput={(e) => handleOnchangeInput(e, "fromHour")}
+          />
           <div>:</div>
-          <Input id={"fromMinute"} handleOnchangeInput={handleOnchangeInput} />
+          <Input
+            handleOnchangeInput={(e) => handleOnchangeInput(e, "fromMinute")}
+          />
         </div>
       </div>
       <div className="space-y-2 w-full">
         <p>To: *</p>
         <div className="flex items-center gap-2">
-          <Input id={"toHour"} handleOnchangeInput={handleOnchangeInput} />
+          <Input
+            handleOnchangeInput={(e) => handleOnchangeInput(e, "toHour")}
+          />
           <div>:</div>
-          <Input id={"toMinute"} handleOnchangeInput={handleOnchangeInput} />
+          <Input
+            handleOnchangeInput={(e) => handleOnchangeInput(e, "toMinute")}
+          />
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { StoreRegistered } from "../components/time-app/store-registered";
 export const TimeApp = () => {
   const [listSchedule, setListSchedule] = useState<TSchedule[]>([]);
   const [listScheduleSave, setListScheduleSave] = useState<TSchedule[]>([]);
+  console.log("🚀 ~ TimeApp ~ listScheduleSave:", listScheduleSave);
 
   const handleAddSchedule = () => {
     setListSchedule((prev) => [
@@ -15,6 +16,55 @@ export const TimeApp = () => {
       { id: generateId(), workingDays: [], times: [] },
     ]);
   };
+
+  const DEFAULT_SCHEDULE = [
+    {
+      id: "1",
+      day: "mon",
+      workingTime: [
+        { start: 1, to: 10 },
+        { start: 10, to: 12 },
+        { start: 14, to: 24 },
+      ],
+    },
+    {
+      id: "2",
+      day: "tue",
+      workingTime: [
+        { start: 1, to: 10 },
+        { start: 10, to: 12 },
+        { start: 14, to: 24 },
+      ],
+    },
+    {
+      id: "3",
+      day: "wed",
+      workingTime: [
+        { start: 1, to: 10 },
+        { start: 10, to: 12 },
+      ],
+    },
+    {
+      id: "4",
+      day: "thu",
+      workingTime: [],
+    },
+    {
+      id: "5",
+      day: "fri",
+      workingTime: [],
+    },
+    {
+      id: "6",
+      day: "sat",
+      workingTime: [],
+    },
+    {
+      id: "7",
+      day: "sun",
+      workingTime: [],
+    },
+  ];
 
   return (
     <ScheduleContext.Provider value={{ listSchedule, setListSchedule }}>

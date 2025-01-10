@@ -2,7 +2,7 @@ export const Input = ({
   id,
   handleOnchangeInput,
 }: {
-  id: string;
+  id?: string;
   handleOnchangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
