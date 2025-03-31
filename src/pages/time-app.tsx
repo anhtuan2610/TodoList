@@ -68,7 +68,7 @@ export const TimeApp = () => {
 
   return (
     <ScheduleContext.Provider value={{ listSchedule, setListSchedule }}>
-      <div className="bg-[#212121] min-h-screen text-white p-6 space-y-5">
+      <div className="min-h-screen text-white p-6 space-y-5">
         <div className="bg-[#1B1B1F] p-4 rounded-2xl">
           <div className="flex justify-between">
             <div className=" text-2xl  font-semibold">Working hour</div>

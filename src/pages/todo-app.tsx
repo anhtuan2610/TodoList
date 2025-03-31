@@ -9,7 +9,7 @@ export const TodoApp = () => {
 
   return (
     <>
-      <div className="bg-[#212121] min-h-screen text-white px-10 py-6 space-y-4">
+      <div className="min-h-screen text-white px-10 py-6 space-y-4">
         <div className="flex justify-end">
           <button
             className="border border-gray-300 p-3 rounded-xl"
