@@ -8,8 +8,8 @@ import {
   SelectValue,
 } from "../../ui/select";
 import Loading from "../common/loading";
-import { Cities } from "../../../types/response/form";
 import { getCityByRegionId } from "../../../services/form";
+import { Cities } from "../../../types/response/form";
 
 const CitySelect = ({
   regionId,

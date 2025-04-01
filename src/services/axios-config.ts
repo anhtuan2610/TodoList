@@ -2,7 +2,6 @@ import axios, { AxiosRequestConfig } from "axios";
 // import Cookies from "js-cookie";
 
 const apiClient = axios.create({
-  baseURL: "https://dev.go.locate.sa/api/admin/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
@@ -47,17 +46,19 @@ apiClient.interceptors.response.use(
   }
 );
 
-// apiClient.interceptors.request.use(
-//   (config) => {
-//     const accessToken = Cookies.get("accessToken");
-//     // console.log("🚀 ~ accessToken:", accessToken);
-//     if (accessToken) {
-//       config.headers["Authorization"] = `Bearer ${accessToken}`;
-//     }
-//     return config;
-//   },
-//   (error) => Promise.reject(error)
-// );
+apiClient.interceptors.request.use(
+  (config) => {
+    // const accessToken = Cookies.get("accessToken");
+    // console.log("🚀 ~ accessToken:", accessToken);
+    const accessToken =
+      "eyJhY2Nlc3MtdG9rZW4iOiI3QmxucTJ0UThoaXhDTGpjWEd4Z2NBIiwidG9rZW4tdHlwZSI6IkJlYXJlciIsImNsaWVudCI6Ii1KbTdfZUZ6dEtMRUZydzVKWF9tb2ciLCJleHBpcnkiOiIxNzQ0MTc0MTA2IiwidWlkIjoic3VwZXJfYWRtaW5AZ21haWwuY29tIn0=";
+    if (accessToken) {
+      config.headers["Authorization"] = `Bearer ${accessToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 export const get = <T>({
   url,

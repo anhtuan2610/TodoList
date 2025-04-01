@@ -6,7 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   name: z.string().min(1, "Your merchant name must not be empty"),
-  phoneNumber: z.string().min(1, "This field cannot be left blank"),
+  phoneNumber: z
+    .string()
+    .min(1, "This field cannot be left blank")
+    .regex(/^\d+$/, "Phone number must be digits only"),
+
   email: z
     .string()
     .min(1, "Your merchant email address must not be empty")
@@ -48,8 +52,8 @@ const CreateRequire = () => {
       workingSchedules: undefined,
     },
   });
-  const handleOnSubmit = (data: FormType) => {
-    console.log(data);
+  const handleOnSubmit = (formData: FormType) => {
+    console.log(formData);
   };
 
   return (

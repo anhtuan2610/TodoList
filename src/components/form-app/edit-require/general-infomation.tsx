@@ -4,10 +4,9 @@ import { Label } from "../../ui/label";
 import InputForm from "../common/input-form";
 import CityDialog from "./city-dialog";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/edit-require";
 import PhotoUpload from "./photo-upload";
 import clsx from "clsx";
-import DocumentUpload from "./document-upload";
 import { Switch } from "../../ui/switch";
 
 const GeneralInformation = () => {
@@ -32,7 +31,7 @@ const GeneralInformation = () => {
       <div className="flex justify-between items-center">
         <p className="text-2xl font-semibold">
           General Information{" "}
-          <span className="text-blue-400">(Create Require)</span>
+          <span className="text-blue-400">(Edit Require)</span>
         </p>
         <Button type="submit" variant="destructive">
           Submit
@@ -121,15 +120,22 @@ const GeneralInformation = () => {
       </div>
       <div className="flex flex-col gap-8">
         <PhotoUpload />
-        <DocumentUpload />
+        {/* <DocumentUpload /> */}
       </div>
       <div className="flex flex-col gap-2">
         <Label>Status</Label>
         <div className="flex items-center gap-4">
-          <Switch
-            id="statusWorking"
-            className="data-[state=checked]:bg-[#5D9FF1] data-[state=unchecked]:bg-[#34363B] scale-110"
-            onCheckedChange={handleStatusWorkingChange}
+          <Controller
+            control={control}
+            name="statusWorking"
+            render={({ field: { value } }) => (
+              <Switch
+                id="statusWorking"
+                checked={value}
+                onCheckedChange={handleStatusWorkingChange}
+                className="data-[state=checked]:bg-[#5D9FF1] data-[state=unchecked]:bg-[#34363B] scale-110"
+              />
+            )}
           />
           <Label htmlFor="statusWorking">Working</Label>
         </div>

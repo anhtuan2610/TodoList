@@ -10,7 +10,7 @@ import {
 import CitySelect from "./city-select";
 import RegionSelect from "./region-select";
 import { useFormContext } from "react-hook-form";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/edit-require";
 import { Cities } from "../../../types/response/form";
 
 const CityDialog = ({
@@ -30,7 +30,6 @@ const CityDialog = ({
   };
   const handleOnSave = () => {
     if (citySelected) {
-      setValue("cityId", citySelected.id);
       setValue("cityName", citySelected.nameEn);
       handleCloseSelectCity();
     }

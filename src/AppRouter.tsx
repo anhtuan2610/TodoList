@@ -20,7 +20,7 @@ export const AppRouter = () => {
         <Route path="/form-app">
           <Route index element={<FormApp />} />
           <Route path="create-require" element={<CreateRequire />} />
-          <Route path="edit-require" element={<EditRequire />} />
+          <Route path="edit-require/:id" element={<EditRequire />} />
         </Route>
         <Route path="/test-app" element={<Test />} />
       </Route>

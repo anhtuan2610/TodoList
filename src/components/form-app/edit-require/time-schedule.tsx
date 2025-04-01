@@ -1,7 +1,7 @@
 import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { Label } from "../../ui/label";
 import InputForm from "../common/input-form";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/edit-require";
 
 const TimeSchedule = ({
   timeIndex,
