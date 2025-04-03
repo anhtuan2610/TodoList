@@ -3,9 +3,14 @@ import { Button } from "../../ui/button";
 import TimezoneSelect from "./timezone-select";
 import WorkingSchedule from "./working-schedule";
 import { FormType } from "../../../pages/form/edit-require";
+import { generateId } from "../../../utils/helper";
 
 const WorkingHour = () => {
-  const { watch, control } = useFormContext<FormType>();
+  const {
+    watch,
+    control,
+    formState: { errors },
+  } = useFormContext<FormType>();
   const { append } = useFieldArray({
     control,
     name: "workingSchedules",
@@ -13,11 +18,11 @@ const WorkingHour = () => {
 
   const handleAddSchedule = () => {
     const newWorkingSchedule = {
-      id: new Date().toString(),
+      id: generateId(),
       days: [],
       times: [
         {
-          id: new Date().toString(),
+          id: generateId(),
           fromHour: "",
           fromMinute: "",
           toHour: "",
@@ -35,6 +40,11 @@ const WorkingHour = () => {
       {(watch("workingSchedules") ?? []).map((schedule, index) => (
         <WorkingSchedule key={schedule.id} scheduleIndex={index} />
       ))}
+      {errors.workingSchedules?.root?.message && (
+        <span className="text-red-400">
+          {errors.workingSchedules.root.message}
+        </span>
+      )}
       <Button
         type="button"
         className="flex justify-center items-center w-fit bg-[#2C2D32] hover:bg-[#3F4246]"

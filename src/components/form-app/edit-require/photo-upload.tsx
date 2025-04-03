@@ -1,6 +1,7 @@
 import { Label } from "../../ui/label";
 import { useFormContext, useWatch } from "react-hook-form";
 import { FormType } from "../../../pages/form/edit-require";
+import clsx from "clsx";
 
 const PhotoUpload = () => {
   const {
@@ -15,13 +16,14 @@ const PhotoUpload = () => {
   });
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files?.[0];
-    if (files) {
-      const imageUrl = URL.createObjectURL(files);
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const imageUrl = URL.createObjectURL(files[0]);
+      setValue("photo", files);
       setValue("photo", {
-        photoName: files.name,
+        photoName: files[0].name,
         photoUrl: imageUrl,
-        photoSize: (files.size / (1024 * 1024)).toFixed(2).toString(),
+        photoSize: (files[0].size / (1024 * 1024)).toFixed(2).toString(),
       });
     }
   };
@@ -30,10 +32,13 @@ const PhotoUpload = () => {
     <div className="flex flex-col gap-2">
       <Label>Photo</Label>
       <p>Upload your merchant logo</p>
-      <div className="flex flex-col items-center justify-center w-full gap-4">
+      <div className="flex flex-col items-center justify-center w-full gap-4 ">
         <label
           htmlFor="dropzone-file"
-          className="flex flex-col items-center justify-center w-full h-40 rounded-lg cursor-pointer bg-[#27282D]"
+          className={clsx(
+            "flex flex-col items-center justify-center w-full h-40 rounded-lg cursor-pointer bg-[#27282D] border",
+            errors.photo?.message ? "border-red-400" : "border-transparent"
+          )}
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
             {photo ? (
@@ -74,6 +79,7 @@ const PhotoUpload = () => {
             disabled={!!photo}
           />
         </label>
+        <span className="text-red-400">{errors.photo?.message}</span>
         {photo && (
           <>
             <div className="flex justify-between items-center w-full rounded-lg bg-[#27282D] p-4">
@@ -105,7 +111,6 @@ const PhotoUpload = () => {
                 </svg>
               </button>
             </div>
-            <span>{errors.photo?.photoName?.message}</span>
           </>
         )}
       </div>

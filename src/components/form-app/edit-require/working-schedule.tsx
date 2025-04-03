@@ -6,6 +6,7 @@ import { FormType } from "../../../pages/form/edit-require";
 import TimeSchedule from "./time-schedule";
 import { Button } from "../../ui/button";
 import { CheckedState } from "@radix-ui/react-checkbox";
+import { generateId } from "../../../utils/helper";
 
 const WorkingSchedule = ({ scheduleIndex }: { scheduleIndex: number }) => {
   const { watch, control, setValue, getValues } = useFormContext<FormType>();
@@ -24,7 +25,7 @@ const WorkingSchedule = ({ scheduleIndex }: { scheduleIndex: number }) => {
 
   const handleAddTime = () => {
     timeMethods.append({
-      id: new Date().toString(),
+      id: generateId(),
       fromHour: "",
       fromMinute: "",
       toHour: "",
@@ -32,14 +33,14 @@ const WorkingSchedule = ({ scheduleIndex }: { scheduleIndex: number }) => {
     });
   };
 
-  const handleDayCheckedChange = (checked: CheckedState, dayName: string) => {
+  const handleDayCheckedChange = (checked: CheckedState, dayValue: string) => {
     const currentDays =
       getValues(`workingSchedules.${scheduleIndex}.days`) || [];
     setValue(
       `workingSchedules.${scheduleIndex}.days`,
       checked
-        ? [...currentDays, dayName]
-        : currentDays.filter((day) => day !== dayName)
+        ? [...currentDays, dayValue]
+        : currentDays.filter((day) => day !== dayValue)
     );
   };
 
@@ -74,10 +75,13 @@ const WorkingSchedule = ({ scheduleIndex }: { scheduleIndex: number }) => {
             <Checkbox
               className="border-[#2E3035] bg-[#1B1B1F] scale-125 disabled:bg-[#3f4049]"
               id={day.id.toString()}
+              defaultChecked={watch(
+                `workingSchedules.${scheduleIndex}.days`
+              ).includes(day.value)}
               onCheckedChange={(checked) =>
-                handleDayCheckedChange(checked, day.name)
+                handleDayCheckedChange(checked, day.value)
               }
-              disabled={listDayUnavailable.includes(day.name)}
+              disabled={listDayUnavailable.includes(day.value)}
             />
             <Label htmlFor={day.id.toString()}>{day.name}</Label>
           </div>
@@ -90,6 +94,7 @@ const WorkingSchedule = ({ scheduleIndex }: { scheduleIndex: number }) => {
           scheduleIndex={scheduleIndex}
         />
       ))}
+      <span className="text-red-400"></span>
       <Button type="button" variant="ghost" onClick={handleAddTime}>
         <span>+</span>
         Add Time

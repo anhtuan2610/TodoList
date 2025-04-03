@@ -2,6 +2,7 @@ import { Controller, useFieldArray, useFormContext } from "react-hook-form";
 import { Label } from "../../ui/label";
 import InputForm from "../common/input-form";
 import { FormType } from "../../../pages/form/edit-require";
+import clsx from "clsx";
 
 const TimeSchedule = ({
   timeIndex,
@@ -10,7 +11,10 @@ const TimeSchedule = ({
   timeIndex: number;
   scheduleIndex: number;
 }) => {
-  const { control } = useFormContext<FormType>();
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext<FormType>();
   const timeMethods = useFieldArray({
     control,
     name: `workingSchedules.${scheduleIndex}.times`,
@@ -29,7 +33,18 @@ const TimeSchedule = ({
             control={control}
             name={`workingSchedules.${scheduleIndex}.times.${timeIndex}.fromHour`}
             render={({ field }) => {
-              return <InputForm {...field} />;
+              return (
+                <InputForm
+                  className={clsx(
+                    "border",
+                    errors.workingSchedules?.[scheduleIndex]?.times?.[timeIndex]
+                      ?.fromHour?.message
+                      ? "border-red-400"
+                      : "border-transparent"
+                  )}
+                  {...field}
+                />
+              );
             }}
           />
           <span>:</span>
@@ -37,7 +52,18 @@ const TimeSchedule = ({
             control={control}
             name={`workingSchedules.${scheduleIndex}.times.${timeIndex}.fromMinute`}
             render={({ field }) => {
-              return <InputForm {...field} />;
+              return (
+                <InputForm
+                  className={clsx(
+                    "border",
+                    errors.workingSchedules?.[scheduleIndex]?.times?.[timeIndex]
+                      ?.fromMinute?.message
+                      ? "border-red-400"
+                      : "border-transparent"
+                  )}
+                  {...field}
+                />
+              );
             }}
           />
         </div>
@@ -49,7 +75,18 @@ const TimeSchedule = ({
             control={control}
             name={`workingSchedules.${scheduleIndex}.times.${timeIndex}.toHour`}
             render={({ field }) => {
-              return <InputForm {...field} />;
+              return (
+                <InputForm
+                  className={clsx(
+                    "border",
+                    errors.workingSchedules?.[scheduleIndex]?.times?.[timeIndex]
+                      ?.toHour?.message
+                      ? "border-red-400"
+                      : "border-transparent"
+                  )}
+                  {...field}
+                />
+              );
             }}
           />
           <span>:</span>
@@ -57,7 +94,18 @@ const TimeSchedule = ({
             control={control}
             name={`workingSchedules.${scheduleIndex}.times.${timeIndex}.toMinute`}
             render={({ field }) => {
-              return <InputForm {...field} />;
+              return (
+                <InputForm
+                  className={clsx(
+                    "border",
+                    errors.workingSchedules?.[scheduleIndex]?.times?.[timeIndex]
+                      ?.toMinute?.message
+                      ? "border-red-400"
+                      : "border-transparent"
+                  )}
+                  {...field}
+                />
+              );
             }}
           />
           <button
