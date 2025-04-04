@@ -1,6 +1,6 @@
 import { Label } from "../../ui/label";
 import { useFormContext, useWatch } from "react-hook-form";
-import { FormType } from "../../../pages/form/edit-require";
+import { FormType } from "../../../pages/form/create-require";
 import clsx from "clsx";
 
 const PhotoUpload = () => {
@@ -12,15 +12,15 @@ const PhotoUpload = () => {
   } = useFormContext<FormType>();
   const photo = useWatch({
     control,
-    name: "photo",
+    name: "photoInfo",
   });
 
   const handleUploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files && files.length > 0) {
       const imageUrl = URL.createObjectURL(files[0]);
-      setValue("photo", files);
-      setValue("photo", {
+      setValue("photoFile", files);
+      setValue("photoInfo", {
         photoName: files[0].name,
         photoUrl: imageUrl,
         photoSize: (files[0].size / (1024 * 1024)).toFixed(2).toString(),
@@ -37,7 +37,7 @@ const PhotoUpload = () => {
           htmlFor="dropzone-file"
           className={clsx(
             "flex flex-col items-center justify-center w-full h-40 rounded-lg cursor-pointer bg-[#27282D] border",
-            errors.photo?.message ? "border-red-400" : "border-transparent"
+            errors.photoFile?.message ? "border-red-400" : "border-transparent"
           )}
         >
           <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -79,22 +79,27 @@ const PhotoUpload = () => {
             disabled={!!photo}
           />
         </label>
-        <span className="text-red-400">{errors.photo?.message}</span>
+        <span className="text-red-400">{errors.photoFile?.message}</span>
         {photo && (
           <>
             <div className="flex justify-between items-center w-full rounded-lg bg-[#27282D] p-4">
               <div className="flex items-center gap-3">
                 <img
-                  src={getValues("photo.photoUrl")}
+                  src={getValues("photoInfo.photoUrl")}
                   alt="Preview"
                   className="w-24 h-24 object-cover rounded-lg border border-gray-300"
                 />
                 <div>
-                  <p>{getValues("photo.photoName")}</p>
-                  <p>{getValues("photo.photoSize")} MB</p>
+                  <p>{getValues("photoInfo.photoName")}</p>
+                  <p>{getValues("photoInfo.photoSize")} MB</p>
                 </div>
               </div>
-              <button onClick={() => setValue("photo", undefined)}>
+              <button
+                onClick={() => {
+                  setValue("photoFile", undefined);
+                  setValue("photoInfo", undefined);
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

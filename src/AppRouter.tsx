@@ -8,6 +8,8 @@ import FormApp from "./pages/form";
 import Layout from "./components/layouts";
 import CreateRequire from "./pages/form/create-require";
 import EditRequire from "./pages/form/edit-require";
+import CreateOptional from "./pages/form/create-optional";
+import EditOptional from "./pages/form/edit-optional";
 
 export const AppRouter = () => {
   return (
@@ -21,6 +23,8 @@ export const AppRouter = () => {
           <Route index element={<FormApp />} />
           <Route path="create-require" element={<CreateRequire />} />
           <Route path="edit-require/:id" element={<EditRequire />} />
+          <Route path="create-optional" element={<CreateOptional />} />
+          <Route path="edit-optional/:id" element={<EditOptional />} />
         </Route>
         <Route path="/test-app" element={<Test />} />
       </Route>

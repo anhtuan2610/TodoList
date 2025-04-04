@@ -2,7 +2,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { Button } from "../../ui/button";
 import TimezoneSelect from "./timezone-select";
 import WorkingSchedule from "./working-schedule";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/edit-optional";
 import { generateId } from "../../../utils/helper";
 
 const WorkingHour = () => {
@@ -38,7 +38,7 @@ const WorkingHour = () => {
       <p className="text-2xl font-semibold">Working Hour</p>
       <TimezoneSelect />
       {(watch("workingSchedules") ?? []).map((schedule, index) => (
-        <WorkingSchedule key={schedule.id} scheduleIndex={index} />
+        <WorkingSchedule key={schedule?.id} scheduleIndex={index} />
       ))}
       {errors.workingSchedules?.root?.message && (
         <span className="text-red-400">

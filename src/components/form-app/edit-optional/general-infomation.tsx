@@ -4,7 +4,7 @@ import { Label } from "../../ui/label";
 import InputForm from "../common/input-form";
 import CityDialog from "./city-dialog";
 import { Controller, useFormContext } from "react-hook-form";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/edit-optional";
 import PhotoUpload from "./photo-upload";
 import clsx from "clsx";
 import { Switch } from "../../ui/switch";
@@ -31,14 +31,14 @@ const GeneralInformation = () => {
       <div className="flex justify-between items-center">
         <p className="text-2xl font-semibold">
           General Information{" "}
-          <span className="text-blue-400">(Create Require)</span>
+          <span className="text-blue-400">(Edit Optional)</span>
         </p>
         <Button type="submit" variant="destructive">
           Submit
         </Button>
       </div>
       <div className="flex flex-col gap-3">
-        <Label>Name * (Input)</Label>
+        <Label>Name (Input)</Label>
         <Controller
           control={control}
           name="name"
@@ -57,11 +57,11 @@ const GeneralInformation = () => {
         <span className="text-red-400">{errors.name?.message}</span>
       </div>
       <div className="flex flex-col gap-3">
-        <Label>Phone Number * (Input - Number)</Label>
+        <Label>Phone Number (Input - Number)</Label>
         <Controller
           control={control}
           name="phoneNumber"
-          render={({ field }) => {
+          render={() => {
             return (
               <InputForm
                 className={clsx(
@@ -70,19 +70,40 @@ const GeneralInformation = () => {
                     : "border-transparent"
                 )}
                 placeholder="Phone number"
-                {...field}
+                value={watch("phoneNumber")}
+                onChange={(e) => {
+                  setValue("phoneNumber", e.target.value);
+                  if (e.target.value === "") {
+                    setValue("phoneNumber", undefined);
+                  }
+                }}
               />
             );
           }}
         />
+        {/* <InputForm
+          className={clsx(
+            errors.phoneNumber?.message
+              ? "border-red-400"
+              : "border-transparent"
+          )}
+          placeholder="Phone number"
+          value={watch("phoneNumber")}
+          onChange={(e) => {
+            setValue("phoneNumber", e.target.value);
+            if (e.target.value === "") {
+              setValue("phoneNumber", undefined);
+            }
+          }}
+        /> */}
         <span className="text-red-400">{errors.phoneNumber?.message}</span>
       </div>
       <div className="flex flex-col gap-3">
-        <Label>Email * (Input - email)</Label>
+        <Label>Email (Input - email)</Label>
         <Controller
           control={control}
           name="email"
-          render={({ field }) => {
+          render={() => {
             return (
               <InputForm
                 className={clsx(
@@ -91,7 +112,13 @@ const GeneralInformation = () => {
                     : "border-transparent"
                 )}
                 placeholder="Email Address"
-                {...field}
+                value={watch("email")}
+                onChange={(e) => {
+                  setValue("email", e.target.value);
+                  if (e.target.value === "") {
+                    setValue("email", undefined);
+                  }
+                }}
               />
             );
           }}
@@ -100,7 +127,7 @@ const GeneralInformation = () => {
       </div>
       <div className="flex flex-col gap-2">
         <div className="flex justify-between items-center">
-          <Label>City * (Select)</Label>
+          <Label>City (Select)</Label>
           <Button
             type="button"
             variant="ghost"
@@ -114,7 +141,7 @@ const GeneralInformation = () => {
             errors.cityName?.message ? "border-red-400" : "border-transparent"
           )}
           placeholder="City"
-          value={watch("cityName") ?? ""}
+          value={watch("cityName")}
         />
         <span className="text-red-400">{errors.cityName?.message}</span>
       </div>

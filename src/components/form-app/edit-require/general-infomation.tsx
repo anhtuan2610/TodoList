@@ -114,7 +114,7 @@ const GeneralInformation = () => {
             errors.cityName?.message ? "border-red-400" : "border-transparent"
           )}
           placeholder="City"
-          value={watch("cityName")}
+          value={watch("cityName") ?? ""}
         />
         <span className="text-red-400">{errors.cityName?.message}</span>
       </div>

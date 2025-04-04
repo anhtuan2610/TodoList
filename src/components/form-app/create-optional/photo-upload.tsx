@@ -1,6 +1,6 @@
 import { Label } from "../../ui/label";
 import { useFormContext, useWatch } from "react-hook-form";
-import { FormType } from "../../../pages/form/create-require";
+import { FormType } from "../../../pages/form/create-optional";
 import clsx from "clsx";
 
 const PhotoUpload = () => {

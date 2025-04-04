@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
-import GeneralInformation from "../../components/form-app/edit-require/general-infomation";
-import WorkingHour from "../../components/form-app/edit-require/working-hour";
+import GeneralInformation from "../../components/form-app/edit-optional/general-infomation";
+import WorkingHour from "../../components/form-app/edit-optional/working-hour";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from "react-router-dom";
@@ -8,84 +8,83 @@ import { useQuery } from "@tanstack/react-query";
 import { getMerchantDetails } from "../../services/form";
 import { generateId } from "../../utils/helper";
 
-const schema = z.object({
-  name: z.string().min(1, "Your merchant name must not be empty"),
-  phoneNumber: z
-    .string()
-    .min(1, "Phone number must not be empty")
-    .regex(/^\d+$/, "Phone number must be digits only"),
-  email: z
-    .string()
-    .min(1, "Your merchant email address must not be empty")
-    .email("Invalid email format"),
-  cityName: z.string().min(1, "City is required"),
-  photoFile: z
-    .instanceof(FileList)
-    .refine((files) => files.length > 0, {
-      message: "Image must is type image",
-    })
-    .optional()
-    .refine(
-      (value) => {
-        if (value === undefined) {
-          return false;
-        }
-        return true;
-      },
-      { message: "Image is required" }
-    ),
-  photoInfo: z
-    .object({
-      photoName: z.string(),
-      photoUrl: z.string(),
-      photoSize: z.string(),
-    })
-    .optional(),
-  statusWorking: z.boolean().default(false),
-  workingSchedules: z
-    .array(
-      z.object({
-        id: z.string().min(1),
-        days: z.array(z.string()).min(1, "At least one day is required"),
-        times: z
-          .array(
-            z.object({
-              id: z.string().min(1),
-              fromHour: z
-                .string()
-                .min(1, "from hour not empty")
-                .refine((val) => Number(val) >= 0 && Number(val) <= 23, {
-                  message: "Hour must be between 0 and 23",
-                }),
-              fromMinute: z
-                .string()
-                .min(1, "from minute not empty")
-                .refine((val) => Number(val) >= 0 && Number(val) <= 59, {
-                  message: "Minutes must be between 0 and 59",
-                }),
-              toHour: z
-                .string()
-                .min(1, "to hour not empty")
-                .refine((val) => Number(val) >= 0 && Number(val) <= 23, {
-                  message: "Hour must be between 0 and 23",
-                }),
-              toMinute: z
-                .string()
-                .min(1, "to minute not empty")
-                .refine((val) => Number(val) >= 0 && Number(val) <= 59, {
-                  message: "Minutes must be between 0 and 59",
-                }),
-            })
-          )
-          .min(1, "At least 1 time"),
+const schema = z
+  .object({
+    name: z.string().optional(),
+    phoneNumber: z
+      .string()
+      .regex(/^\d+$/, "Phone number must be digits only")
+      .optional(),
+    email: z.string().email("Invalid email format").optional(),
+    cityName: z.string().optional(),
+    photoFile: z
+      .instanceof(FileList)
+      .refine((files) => files.length > 0, {
+        message: "Image must is type image",
       })
-    )
-    .min(1, "At least 1 schedule"),
-});
+      .optional(),
+    photoInfo: z
+      .object({
+        photoName: z.string(),
+        photoUrl: z.string(),
+        photoSize: z.string(),
+      })
+      .optional(),
+    statusWorking: z.boolean().default(false),
+    workingSchedules: z
+      .array(
+        z
+          .object({
+            id: z.string(),
+            days: z.array(z.string()).optional(),
+            times: z
+              .array(
+                z.object({
+                  id: z.string().min(1),
+                  fromHour: z
+                    .string()
+                    .refine((val) => Number(val) >= 0 && Number(val) <= 23, {
+                      message: "Hour must be between 0 and 23",
+                    })
+                    .optional(),
+                  fromMinute: z
+                    .string()
+                    .refine((val) => Number(val) >= 0 && Number(val) <= 59, {
+                      message: "Minutes must be between 0 and 59",
+                    })
+                    .optional(),
+                  toHour: z
+                    .string()
+                    .refine((val) => Number(val) >= 0 && Number(val) <= 23, {
+                      message: "Hour must be between 0 and 23",
+                    })
+                    .optional(),
+                  toMinute: z
+                    .string()
+                    .refine((val) => Number(val) >= 0 && Number(val) <= 59, {
+                      message: "Minutes must be between 0 and 59",
+                    })
+                    .optional(),
+                })
+              )
+              .optional(),
+          })
+          .optional()
+      )
+      .optional(),
+  })
+  .superRefine((data: Record<string, any>) => {
+    // ?
+    Object.keys(data).forEach((key) => {
+      if (key in data && typeof data[key] === "undefined") {
+        delete data[key];
+      }
+    });
+  });
 
 export type FormType = z.infer<typeof schema>;
 
-const EditRequire = () => {
+const EditOptional = () => {
   const { id: merchantId } = useParams();
 
   const methods = useForm<FormType>({
@@ -163,4 +162,4 @@ const EditRequire = () => {
   );
 };
 
-export default EditRequire;
+export default EditOptional;

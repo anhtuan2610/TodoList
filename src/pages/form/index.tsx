@@ -9,6 +9,12 @@ const FormApp = () => {
       <div className="border border-white rounded-xl p-10 flex justify-center items-center h-80 font-bold text-2xl cursor-pointer">
         <Link to="edit-require">Form Edit Require</Link>
       </div>
+      <div className="border border-white rounded-xl p-10 flex justify-center items-center h-80 font-bold text-2xl cursor-pointer">
+        <Link to="create-optional">Form Create Optional</Link>
+      </div>{" "}
+      <div className="border border-white rounded-xl p-10 flex justify-center items-center h-80 font-bold text-2xl cursor-pointer">
+        <Link to="edit-optional">Form Edit Optional</Link>
+      </div>
     </div>
   );
 };
